@@ -16,6 +16,9 @@
     <a href="https://www.typescriptlang.org/">
       <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat&logo=TypeScript&logoColor=white" alt="TypeScript">
     </a>
+    <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript">
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat" alt="JavaScript">
+    </a>
     <a href="https://www.python.org/">
       <img src="https://img.shields.io/badge/Python-3776AB.svg?style=flat&logo=Python&logoColor=white" alt="Python">
     </a>
