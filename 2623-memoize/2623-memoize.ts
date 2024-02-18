@@ -6,7 +6,7 @@ function memoize(fn: Fn): Fn {
     
     return function(...args: number[]) {
         const key = args.join("_")
-        if (dic.get(key) !== null && dic.get(key) !== undefined) {
+        if (dic.has(key)) {
             return dic.get(key)
         } else {
             dic.set(key, fn(...args))
