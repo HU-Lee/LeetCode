@@ -5,13 +5,12 @@ class Solution(object):
         :type trust: List[List[int]]
         :rtype: int
         """
-        trust_froms = list(set([x[0] for x in trust]))
-        if len(trust_froms) != n-1:
-            return -1
-        else:
-            possible = n*(n+1)//2 - sum(trust_froms)
-            if all([x,possible] in trust for x in trust_froms):
-                return possible
-            else:
-                return -1 
-        
+        trust_from = {}
+        trust_to = {}
+        for t in trust:
+            trust_from[t[0]] = 1
+            trust_to[t[1]] = trust_to.get(t[1],0) + 1
+        for i in range(1,n+1):
+            if trust_from.get(i,0) == 0 and trust_to.get(i,0) == n-1:
+                return i
+        return -1
