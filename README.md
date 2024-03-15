@@ -37,7 +37,7 @@
 
 ## Description
 
-Problem solving on [LeetCode][leetcode].  
+Problem solving in [LeetCode][leetcode].  
 This repo is being synced by using [LeetHub-3.0][leethub]
 
 [leetcode]: https://leetcode.com/HU-Lee/
