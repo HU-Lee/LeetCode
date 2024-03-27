@@ -1,22 +1,16 @@
 func numSubarrayProductLessThanK(nums []int, k int) int {
     ans := 0
     l := len(nums)
+    left := 0
+    cur := 1
     for i := 0; i < l; i++ {
-        if nums[i] >= k {
-            continue
+        cur *= nums[i]
+        for cur >= k && left <= i {
+            cur /= nums[left]
+            left++
         }
 
-        c := 0
-        cur := nums[i]
-        for j := i+1; j < l; j++ {
-            cur *= nums[j]
-            if cur >= k {
-                break
-            } else {
-                c++
-            }
-        }
-        ans += c+1
+        ans += i - left +1
     }
     return ans
 }
