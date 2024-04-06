@@ -4,20 +4,28 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        ans = ""
-        err_open = []
-        err_close = []
-        for idx, x in enumerate(s):
+        tmp = ""
+        cnt = 0
+        for x in s:
             if x == "(":
-                err_open.append(idx)
+                cnt += 1
             elif x == ")":
-                if not err_open:
-                    err_close.append(idx)
-                else:
-                    err_open.pop()
+                cnt -= 1
+            if cnt < 0:
+                cnt = 0
+                continue
+            tmp += x
         
-        for idx, x in enumerate(s):
-            if idx not in err_open + err_close:
-                ans += x
+        ans = ""
+        cnt = 0
+        for x in reversed(tmp):
+            if x == ")":
+                cnt += 1
+            elif x == "(":
+                cnt -= 1
+            if cnt < 0:
+                cnt = 0
+                continue
+            ans = x + ans
 
         return ans
