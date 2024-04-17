@@ -30,4 +30,4 @@ class Solution:
             dfs(root)
             return mi[0]
         else:
-            return root.val
+            return alphabets[root.val]
