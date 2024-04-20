@@ -14,11 +14,11 @@ class Solution:
             elif is_land(x,y+1):
                 dfs(x,y+1)
             else:
-                path.extend([x,y])
-                for w in range(path[0], path[2]+1):
-                    for h in range(path[1], path[3]+1):
+                val = path + [x,y]
+                for w in range(val[0], val[2]+1):
+                    for h in range(val[1], val[3]+1):
                         land[w][h] = 0
-                ans.append(path)
+                ans.append(val)
 
         for i in range(len(land)):
             for j in range(len(land[0])):
