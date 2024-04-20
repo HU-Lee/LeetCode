@@ -7,7 +7,6 @@ class Solution:
         path = []
 
         def dfs(x:int,y:int):
-            print(path)
             if is_land(x+1,y) and is_land(x,y+1):
                 dfs(x+1,y+1)
             elif is_land(x+1,y):
@@ -15,16 +14,15 @@ class Solution:
             elif is_land(x,y+1):
                 dfs(x,y+1)
             else:
-                val = path + [x,y]
-                for w in range(val[0], val[2]+1):
-                    for h in range(val[1], val[3]+1):
+                path.extend([x,y])
+                for w in range(path[0], path[2]+1):
+                    for h in range(path[1], path[3]+1):
                         land[w][h] = 0
-                ans.append(val)
+                ans.append(path)
 
         for i in range(len(land)):
             for j in range(len(land[0])):
                 if is_land(i,j):
                     path = [i,j]
                     dfs(i,j)
-                    path = []
         return ans 
