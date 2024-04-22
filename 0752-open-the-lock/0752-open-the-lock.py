@@ -12,9 +12,8 @@ class Solution:
             return "".join(lock_arr)
 
         q = [("0000",0)]
-        visited = {
-            "0000": True
-        }
+        visited = defaultdict(bool)
+        visited["0000"] = True
 
         while q:
             lock, x = q.pop(0)
@@ -24,11 +23,11 @@ class Solution:
                 continue
             for i in range(4):
                 l1 = changeLock(lock, i, True)
-                if (not l1 in visited) and (not l1 in deadends):
+                if (not visited[l1]) and (not l1 in deadends):
                     visited[l1] = True
                     q.append((l1, x+1))
                 l2 = changeLock(lock, i, False)
-                if not l2 in visited and (not l2 in deadends):
+                if (not visited[l2]) and (not l2 in deadends):
                     visited[l2] = True
                     q.append((l2, x+1))
         return -1
