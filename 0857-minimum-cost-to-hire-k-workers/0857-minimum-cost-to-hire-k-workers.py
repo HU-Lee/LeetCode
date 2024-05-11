@@ -1,18 +1,14 @@
 class Solution:
     def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
-        main_heap = []
-        for i in range(len(quality)):
-            w = wage[i]
-            q = quality[i]
-            heapq.heappush(main_heap, (w/q, i))
+        main_arr = sorted([(wage[i]/quality[i], quality[i]) for i in range(len(quality))])
         q_heap = []
+        q_total = 0
         ans = math.inf
-        base_ratio = 0
-        for n in range(len(quality)):
-            base_ratio, i = heapq.heappop(main_heap)
-            heapq.heappush(q_heap, -quality[i])
-            if len(q_heap) > k:
-                heapq.heappop(q_heap)
-            if n >= k-1:
-                ans = min(ans, -base_ratio*sum(q_heap))
+        for base_ratio, q in main_arr:
+            q_total += q
+            heapq.heappush(q_heap, -q)
+            while len(q_heap) > k:
+                q_total += heapq.heappop(q_heap)
+            if len(q_heap) == k:
+                ans = min(ans, base_ratio*q_total)
         return ans
