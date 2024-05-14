@@ -13,8 +13,7 @@ class Solution:
             grid[i][j] = 0
             result = 0
             for di, dj in [(-1,0), (1,0), (0,-1), (0,1)]:
-                if isValid(i+di, j+dj):
-                    result = max(result, dfs(i+di, j+dj))
+                result = max(result, dfs(i+di, j+dj))
             grid[i][j] = val_store
             return val_store + result
 
