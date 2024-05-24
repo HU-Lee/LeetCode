@@ -21,9 +21,7 @@ class Solution:
                     val = sum(wc[i]*score[i] for i in range(26)) + dfs(x+1)
                     for i in range(26):
                         counts[i] += wc[i]
-                else:
-                    val = dfs(x+1)
-                print(val)
+                val = max(val, dfs(x+1))
                 self.ans = max(self.ans, val)
                 return val
         
