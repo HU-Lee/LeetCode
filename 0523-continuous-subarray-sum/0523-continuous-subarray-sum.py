@@ -6,7 +6,9 @@ class Solution:
         cnt = 0
         for idx, num in enumerate(nums):
             cnt = (cnt + num)%k
-            if cnt in dic and idx - dic[cnt] > 1:
-                return True
-            dic[cnt] = idx
+            if cnt in dic:
+                if idx - dic[cnt] > 1:
+                    return True
+            else:
+                dic[cnt] = idx
         return False
