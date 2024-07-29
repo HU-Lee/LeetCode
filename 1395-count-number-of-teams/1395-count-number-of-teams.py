@@ -1,20 +1,15 @@
 class Solution:
     def numTeams(self, rating: List[int]) -> int:
         n = len(rating)
-        dps = [0]*(n+1)
-        dps[3] = 1 if (
-            (rating[0] < rating[1] < rating[2]) or
-            (rating[0] > rating[1] > rating[2])
-        ) else 0
-
-        for i in range(4, n+1):
-            cnt = dps[i-1]
-            for x in range(i-1):
-                for y in range(x+1, i-1):
-                    if rating[x] < rating[y] < rating[i-1] \
-                    or rating[x] > rating[y] > rating[i-1]:
-                        cnt += 1
-            dps[i] = cnt
-        
-        print(dps)
-        return dps[n]
+        ans = 0
+        for idx, r in enumerate(rating):
+            left_small, right_big = 0,0
+            for x in rating[:idx]:
+                if x < r:
+                    left_small += 1
+            for y in rating[idx+1:]:
+                if y > r:
+                    right_big += 1
+            
+            ans += left_small*right_big + (idx-left_small)*(n-1-idx-right_big)
+        return ans
