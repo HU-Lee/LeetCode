@@ -21,6 +21,6 @@ class Solution:
         for i in range(n):
             if not visited[i]:
                 self.distinct += 1
-            visit(i)
+                visit(i)
         
         return n - self.distinct
