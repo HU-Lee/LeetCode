@@ -18,8 +18,10 @@ class AllOne:
             self.max = 1
             self.min = 1
             return
+        # New maximum value
         if prev_count == self.max:
             self.max += 1
+        # New minimum value, or current minimum disappears
         if (prev_count + 1 < self.min) or \
            (prev_count == self.min and not self.counts[prev_count]):
             self.min = prev_count + 1
@@ -30,16 +32,21 @@ class AllOne:
         self.counts[prev_count].discard(key)
         if prev_count > 1:
             self.counts[prev_count-1].add(key)
-        self.data[key] -= 1
+        if self.data[key] == 1:
+            del self.data[key]
+        else:
+            self.data[key] -= 1
 
         if self.total_data == 0:
             self.max = 0
             self.min = 0
             return
+        # Current maximum disappears
         if prev_count == self.max and not self.counts[prev_count]:
             self.max -= 1
         if prev_count == self.min and not self.counts[prev_count]:
-            self.min = max(prev_count-1, 0)
+            # This part is O(n), not O(1)...
+            self.min = min(self.data.values())
         
     def getMaxKey(self) -> str:
         return next(iter(self.counts[self.max]), "")
